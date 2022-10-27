@@ -3,18 +3,15 @@
 #include <string.h>
 
 int bindec(char *str) {
-  int casas = 1, cont_total = 1; // casas -> Casas decimais da conversão (1, 2, 4, 8, …).
-                      // cont_total -> Total da soma das casas
+  int casas = 1, cont_total = 1; // casas -> Casas decimais da conversão (1, 2, 4, 8, …); cont_total -> Total da soma das casas
   int cont_zero = 0; // Total da soma das casas onde tem o algarismo 0
   int num_dec;       // Resultado da subtração de cont_total e cont_zero
 
   for (int i = (strlen(str) - 1); i > 0; i--) {
-    // Basicamente, esta repetição está invertida e nela está o total de
-    // elementos no vetor bin com excessão do último.
+    // Basicamente, esta repetição está invertida e nela está o total de elementos no vetor bin com excessão do último.
 
     casas *= 2; // Como o valor inicial é 1, a multiplicação não dará 0
-    cont_total += casas; // A contagem é feita com a atribuição de multiplicação
-                         // por 2 na variável casas
+    cont_total += casas; // A contagem é feita com a atribuição de multiplicação por 2 na variável casas
 
     if (str[i - 1] == '0') {
       // Caso a casa decimal atual seja 0, também é feita uma contagem
@@ -27,12 +24,11 @@ int bindec(char *str) {
     cont_zero++;
   }
 
-  num_dec = cont_total - cont_zero; // Subtrai as casas que têm 1 pela as que
-                                    // têm 0 e assim teremos o número
+  num_dec = cont_total - cont_zero; // Subtrai as casas que têm 1 pela as que têm 0 e assim teremos o número
   return num_dec;
 	}
 
-int decbin(int num) {
+void decbin(int num) {
   int dec = num; // dec de "decimal". Basicamente, o parametro passa a ser o valor de uma nova variável 
   int i = 0, bin_num[100]; // Criação da variável i e bin_num (onde ficará o número em binário)
 
@@ -55,13 +51,12 @@ int decbin(int num) {
 
 int main(void) {
   char bin[100]; // Variável onde a string (número em binário) será armazenada
-  int d; // Variável da decisão
-  int dec; // Variável do número decimal que será convertido
+  int d, dec; // d -> Variável da decisão; dec -> Variável do número decimal que será convertido
 	
   printf("Você quer converter binário para decimal ou o contrário? (Digite 1 para a primeira opção e 2 para a segunda): "); scanf("%d", &d); 
 
   if (d == 1) {
-    printf("Digite um número em binário: "); scanf("%s", &bin);// Obtem o número em binário
+    printf("Digite um número em binário: "); scanf("%s", &bin); // Obtem o número em binário
 
     printf("Número em decimal: %d\n",
            bindec(bin)); // Saída de dados com o resultado final
